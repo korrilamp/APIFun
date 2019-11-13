@@ -27,7 +27,7 @@
 					result = request.responseText;
 					pokemon = JSON.parse(result);
 
-					document.getElementById("data").innerHTML ="Search the Pokédex to grab data on some Pokémon!!"; 
+					document.getElementById("data").innerHTML ="Search the Pokédex to grab data on some Pokémon!"; 
 					 					
 				}
 				else if (request.readyState == 4 && request.status != 200) {
@@ -72,7 +72,7 @@
 	<br><hr><p>
 		1. I selected PokeAPI, which is a database containing ALL information (Maps, Items, Pokemon, Moves, Trainers, etc.) about ALL Pokémon games <br>
 		2. I found this API on this site: https://pokeapi.co/docs/v2.html#pokemon-section <br>
-		3. The options I used were: Entry Number and Name for each Pokémon entry<br>
+		3. The Parameters/options I used for the API call were: Entry Number and Name for each Pokémon entry<br>
 		4. This API would be helpful for anyone interested in building fan sites or content for the beloved Pokémon series. There are lots of web apps and tools that people make for kids to learn about the different Pokémon Species and moves, and using an API like this one would be a good approach rather than manually retrieving and displaying information for so many entries. This API would also be helpful if someone was trying to make a digital version of the Pokémon card game, since it includes all types of information about the effects and moves that different Pokémon can have on eachother.<br>
 	</p>
 </body>
