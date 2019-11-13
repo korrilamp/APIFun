@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+	<title>Pokedex API</title>
+	<meta charset="utf-8"/>
+	<script>
+		function mainFunc() {
+			/* Step 1: Make instance of request object*/
+			request = new XMLHttpRequest();
+			console.log("1 - request object created");
+ 
+			// Step 2: Set the URL for the AJAX request to be the JSON file
+ 
+			request.open("GET", "https://pokeapi.co/api/v2/pokedex/2/", true);
+
+			console.log("2 - opened request file");
+ 
+			// Step 3: set up event handler/callback
+
+			request.onreadystatechange = function() {
+				console.log("3 - readystatechange event fired.");
+ 
+				if (request.readyState == 4 && request.status == 200) {
+
+					// Step 5: wait for done + success
+
+					result = request.responseText;
+					pokemon = JSON.parse(result);
+
+					document.getElementById("data").innerHTML ="Search the Pokédex to grab data on some Pokémon!"; 
+					 					
+				}
+				else if (request.readyState == 4 && request.status != 200) {
+
+					document.getElementById("data").innerHTML = "Something is wrong!  Check the logs to see where this went off the rails";
+
+				}
+
+				else if (request.readyState == 3) {
+
+					document.getElementById("data").innerHTML = "Too soon!  Try again";
+
+				}
+
+			}
+
+		// Step 4: fire off the HTTP request
+			request.send();
+			console.log("4 - Request sent");
+		}
+
+		function printFunction(form){
+				var poke_index;
+				poke_index = form.poke.value;
+				document.getElementById("data").innerHTML ="<b>" +"Pokémon: " + "</b>" + "Entry Number: " + pokemon["pokemon_entries"][poke_index]["entry_number"] + ", " + "Species Name: " + pokemon["pokemon_entries"][poke_index]["pokemon_species"]["name"]; 
+			}
+	</script>
+</head>
+
+
+<body onload="mainFunc()">
+
+	<h1>API Based Pokédex</h1>
+	    <form method="get">
+	    Enter an index (0-150) to search the Pokédex!<input type="text" name="poke"><br>
+	    <button type="button" onclick="printFunction(form)">Find This Pokémon!</button>
+	    <hr>
+	</form>
+    <p><b>Found the Following Data on this Pokemon:</b></p>
+	<div id="data">Loading...</div>
+
+	<br><hr><p>
+		1. I selected PokeAPI, which is a database containing ALL information (Maps, Items, Pokemon, Moves, Trainers, etc.) about ALL Pokémon games <br>
+		2. I found this API on this site: https://pokeapi.co/docs/v2.html#pokemon-section <br>
+		3. The options I used were: Entry Number and Name for each Pokémon entry<br>
+		4. This API would be helpful for anyone interested in building fan sites or content for the beloved Pokémon series. There are lots of web apps and tools that people make for kids to learn about the different Pokémon Species and moves, and using an API like this one would be a good approach rather than manually retrieving and displaying information for so many entries. This API would also be helpful if someone was trying to make a digital version of the Pokémon card game, since it includes all types of information about the effects and moves that different Pokémon can have on eachother.<br>
+	</p>
+</body>
+</html>
